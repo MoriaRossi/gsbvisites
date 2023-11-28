@@ -37,39 +37,42 @@ export default defineComponent({
 
 <template>
     <div>
-        <h1 style="position: relative;
-    top: -100px;">Creer rapport</h1>
+        <h1 style="position: relative;">Creer rapport</h1>
 
-        <form @submit.prevent="enregistrerVisite" style="position: relative; top: -100px">
-            <div>
-                <label>Date de la visite :</label>
-                <input type="date" v-model="dateVisite" required />
+        <form @submit.prevent="enregistrerVisite">
+            <div class="form__group field">
+                <input class="form__field" placeholder="dateDeLaVisite" name="dateDeLaVisite" type="date"
+                    v-model="dateVisite" required />
+                <label for="dateDeLaVisite" class="form__label">Date de la visite :</label>
             </div>
 
-            <div>
-                <label>Motif de la visite :</label>
-                <select v-model="motifVisite" required>
-                    <option value="">Sélectionnez un motif</option>
-                    <option v-for="motif in motifs" :key="motif" :value="motif">{{ motif }}</option>
+            <div class="form__group field">
+                <select class="form__field" placeholder="Médicaments présentés :" name="motifDeLaVisite"
+                    v-model="motifVisite" required>
+                    <option class="form__field" value="">Sélectionnez un motif</option>
+                    <option class="form__field" v-for="motif in motifs" :key="motif" :value="motif">{{ motif }}</option>
                 </select>
+                <label for="motifDeLaVisite" class="form__label">Motif de la visite :</label>
             </div>
 
-            <div>
-                <label>Médicaments présentés :</label>
-                <textarea v-model="medicamentsPresentes" rows="4"></textarea>
+            <div class="form__group field">
+                <textarea class="form__field" placeholder="Médicaments présentés :" name="médicamentPrésentés"
+                    v-model="medicamentsPresentes" rows="4"></textarea>
+                <label for="médicamentPrésentés" class="form__label">Médicaments présentés :</label>
             </div>
 
-            <div>
-                <label>Nombre d'échantillons offerts :</label>
-                <input type="number" v-model.number="nbEchantillons" min="0" />
+            <div class="form__group field">
+                <input type="number" class="form__field" placeholder="Nombre d'échantillons offerts" name="echantillons"
+                    v-model.number="nbEchantillons" min="0" />
+                <label for="echantillons" class="form__label">Nombre d'échantillons offerts :</label>
             </div>
 
-            <div>
-                <label>Bilan de la visite :</label>
-                <textarea v-model="bilanVisite" rows="4"></textarea>
+            <div class="form__group field">
+                <textarea class="form__field" placeholder="Bilan de la visit" name="bilanDeLaVisite" v-model="bilanVisite"
+                    rows="4"></textarea>
+                <label for="bilanDeLaVisite" class="form__label">Bilan de la visite :</label>
             </div>
 
-            <button type="submit">Enregistrer</button>
-        </form>
-    </div>
-</template>
+        <button type="submit">Enregistrer</button>
+    </form>
+</div></template>
