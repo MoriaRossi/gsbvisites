@@ -1,0 +1,92 @@
+// Variables pour les couleurs vintage en dégradé
+$vintage-beige: #f5f5dc;
+$vintage-brown: rgb(132, 69, 48);
+$vintage-white: white;
+$vintage-grey: #a9a9a9;
+$vintage-color: #f38d49;
+
+// Mixin pour les ombres rétro
+@mixin vintage-box-shadow {
+  box-shadow: 2px 2px 5px $vintage-brown;
+}
+
+// Style de base pour un look vintage
+body {
+  background: linear-gradient(to bottom right, $vintage-color, $vintage-grey);
+  color: $vintage-brown;
+  font-family: 'Rockwell';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  max-width: 800px; // Vous pouvez ajuster la largeur maximale selon vos besoins
+  text-align: center;
+  padding: 40px;
+  background-color: $vintage-beige;
+  border-radius: 10px;
+  @include vintage-box-shadow;
+}
+
+// ... (styles pour les autres éléments de votre site)
+
+
+h1, h2, h3 {
+  color: $vintage-white;
+  font-size: 100px;
+  text-shadow: 1px 1px $vintage-grey;
+
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+a {
+  color: $vintage-brown;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.button {
+  background-color: $vintage-brown;
+  color: $vintage-beige;
+  font-size: 22px;
+  padding: 30px 40px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  @include vintage-box-shadow;
+
+  &:hover {
+    background-color: darken($vintage-brown, 10%);
+  }
+}
+
+// Exemple de classe spécifique pour une section vintage
+.vintage-section {
+  background-color: $vintage-grey;
+  padding: 20px;
+  border-radius: 10px;
+  @include vintage-box-shadow;
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 18px;
+  }
+
+  .vintage-image {
+    border-radius: 50%;
+    @include vintage-box-shadow;
+  }
+}
