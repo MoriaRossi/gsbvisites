@@ -1,25 +1,30 @@
 {
   "name": "gsbvisites",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "mocha --require ts-node/register --require tsconfig-paths/register 'src/**/*.test.ts'"
+    "test": "mocha --require ts-node/register --require tsconfig-paths/register 'src/**/*.test.ts'",
+    "dev": "ts-node src/app.ts",
+    "live": "ts-node src/app.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/jsonwebtoken": "^9.0.5",
+    "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.11.3"
   },
   "devDependencies": {
     "@types/chai": "^4.3.11",
+    "@types/express": "^4.17.21",
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.10.0",
     "@types/pg": "^8.10.9",
     "chai": "^4.3.10",
     "mocha": "^10.2.0",
+    "nodemon": "^3.0.1",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.3.2"

@@ -40,7 +40,6 @@ CREATE TABLE medicament (
     composition TEXT,
     effets TEXT,
     contre_indications TEXT
-    -- Add other columns necessary for the medicament table
 );
 
 -- Create the famille table
@@ -53,7 +52,7 @@ CREATE TABLE famille (
 CREATE TABLE appartenir (
     id_medicament INT,
     id_famille INT,
-    PRIMARY KEY (id_medicament, id_famille),
+    SERIAL PRIMARY KEY (id_medicament, id_famille),
     FOREIGN KEY (id_medicament) REFERENCES medicament(id),
     FOREIGN KEY (id_famille) REFERENCES famille(id)
 );
@@ -72,11 +71,10 @@ CREATE TABLE rapport (
 
 -- Create the offrir table
 CREATE TABLE offrir (
-    id SERIAL PRIMARY KEY,
     quantite INT NOT NULL,
     rapport_id INT,
     medicament_id INT,
-    UNIQUE (rapport_id, medicament_id),
+    SERIAL UNIQUE (rapport_id, medicament_id),
     FOREIGN KEY (rapport_id) REFERENCES rapport(id),
     FOREIGN KEY (medicament_id) REFERENCES medicament(id)
 );
@@ -94,24 +92,25 @@ INSERT INTO visiteur (user_id, date_embauche) VALUES
   (1, '2022-01-01');
 
 -- Insertion des valeurs fictives dans la table medicament
-INSERT INTO medicament (nomCommercial, composition, effets, contre_indications) VALUES
-  ('Doliprane', 'Paracetamol', 'Soulage les douleurs', 'Lésions au foie'),
-  ('Advil', 'Ibuprofene', 'Soulage les douleurs et réduit les inflammations', 'Lésions estomac');
+INSERT INTO medicament (id, nomCommercial, composition, effets, contre_indications) VALUES
+  (1, 'Doliprane', 'Paracetamol', 'Soulage les douleurs', 'Lésions au foie'),
+  (2, 'Advil', 'Ibuprofene', 'Soulage les douleurs et réduit les inflammations', 'Lésions estomac');
 
 -- Insertion des valeurs fictives dans la table famille
-INSERT INTO famille (libele) VALUES
-  ('Antalgique'),
-  ('Anti-inflammatoire non-stéroidiens');
+INSERT INTO famille (id ,libele) VALUES
+  (1, 'Antalgique'),
+  (2, 'Anti-inflammatoire non-stéroidiens');
 
 -- Insertion des valeurs fictives dans la table appartenir
 INSERT INTO appartenir (id_medicament, id_famille) VALUES 
     (1, 1),
+    (2, 1),
     (2, 2);
 
 -- Insertion des valeurs fictives dans la table rapport
-INSERT INTO rapport (dateCreation, motif, bilan, visiteur_id, medecin_id) VALUES
-  ('2022-03-01', 'Présentation', 'Accueil chaleureux zinzin', 1, 1),
-  ('2022-05-01', 'Rappel', 'Intérêt pour Doliprane', 1, 1);
+INSERT INTO rapport (id, dateCreation, motif, bilan, visiteur_id, medecin_id) VALUES
+  (1, '2022-03-01', 'Présentation', 'Accueil chaleureux zinzin', 1, 1),
+  (2, '2022-05-01', 'Rappel', 'Intérêt pour Doliprane', 1, 1);
 
 -- Insertion des valeurs fictives dans la table offrir
 INSERT INTO offrir (quantite, rapport_id, medicament_id) VALUES

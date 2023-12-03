@@ -1,21 +1,20 @@
-// UserController.ts
 import { Pool, QueryResult } from 'pg';
 import { User } from '../model/User';
-import pool from '../db'; // Import the pool from the dbConfig file
+import pool from '../db/db';
+
 
 export class UserController {
-  private pool: Pool;
+  static pool: Pool = pool;
 
-  constructor(pool: Pool) {
-    this.pool = pool; // Assign the parameter to the class property
+  constructor() {
   }
 
-  public async getUser(username: string, mdp: string): Promise<User | null> {
+  public static async getUser(username: string, mdp: string): Promise<User | null> {
     try {
       const query = 'SELECT * FROM app_user WHERE username = $1 AND mdp = $2';
       const result: QueryResult = await this.pool.query(query, [username, mdp]);
 
-      if (result.rows.length > 0) {
+      if (result.rows.length > 0 ) {
         const userData = result.rows[0];
         const user: User = new User(
           userData.id,
@@ -25,8 +24,11 @@ export class UserController {
           userData.username,
           userData.mdp,
           userData.adresse,
-          userData.email
+          userData.email,
+          userData.token
         );
+        
+
         return user;
       } else {
         return null;
@@ -37,5 +39,8 @@ export class UserController {
     }
   }
 }
+
+
+
 
 export default UserController;

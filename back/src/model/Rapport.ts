@@ -1,5 +1,7 @@
+import RapportController from "../controller/RapportController";
 import { User } from "../model/User";
 import { Medecin } from "./Medecin";
+import { Medicament } from "./Medicament";
 
 export class Rapport {
   id: number;
@@ -8,6 +10,7 @@ export class Rapport {
   bilan: string;
   auteur: string;
   medecin: string;
+  medicamentsOfferts!: {medicament: Medicament ; quantite: number}
 
   constructor(
     id: number,
@@ -15,7 +18,7 @@ export class Rapport {
     motif: string,
     bilan: string,
     auteur: string,
-    medecin: string
+    medecin: string,
   ) {
     this.id = id;
     this.dateCreation = dateCreation;
@@ -24,15 +27,25 @@ export class Rapport {
     this.auteur = auteur;
     this.medecin = medecin;
   }
+
+  public getMedicamentsOfferts(rapport_id: number) {
+    return RapportController.getMedicamentsOffertsByRapport(rapport_id)
+
+  }
+
+  public setMedicamentsOfferts(medicamentsOfferts: {medicament: Medicament ; quantite: number}) {
+
+    this.medicamentsOfferts = medicamentsOfferts
+    
+    
+
+
+  }
+
+  public async offrirMedicament(quantite: number, rapport_id: number, medicament_id: number) {
+    return RapportController.offrirLesMedicaments
+
+
+  }
 }
-/*-- Create the rapport table
-  CREATE TABLE rapport (
-      id SERIAL PRIMARY KEY,
-      dateCreation DATE NOT NULL,
-      motif VARCHAR(100),
-      bilan TEXT,
-      visiteur_id INT,
-      medecin_id INT,
-      FOREIGN KEY (visiteur_id) REFERENCES visiteur(id),
-      FOREIGN KEY (medecin_id) REFERENCES medecin(id)
-  );  */
+

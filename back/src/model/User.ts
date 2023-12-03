@@ -1,8 +1,7 @@
 // Import the necessary libraries at the beginning of your file
 import jwt from "jsonwebtoken";
-import UserController from "../controller/UserController"; // Assuming UserController is a default export
+import UserController from "../controller/UserController";
 import { Pool } from "pg";
-import pool from "../db";
 
 export class User {
   id: number;
@@ -10,10 +9,10 @@ export class User {
   prenom: string;
   user_type: string;
   username: string;
-  mdp: string;
+  mdp: string | null;
   adresse: string;
   email: string;
-  token: string;
+  token: string | null;
 
   constructor(
     id: number,
@@ -21,9 +20,10 @@ export class User {
     prenom: string,
     user_type: string,
     username: string,
-    mdp: string,
+    mdp: string | null,
     adresse: string,
-    email: string
+    email: string,
+    token: string | null
   ) {
     this.id = id;
     this.nom = nom;
@@ -37,14 +37,11 @@ export class User {
   }
 
   public async getUser(
-    id: number,
+    username: string,
     mdp: string,
-    pool: Pool
   ): Promise<User | null> {
-    // Assuming getUser is a static method in UserController
-    const userController = new UserController(pool);
 
-    return userController.getUser(this.username, this.mdp);
+    return UserController.getUser(username, mdp);
   }
 
   public getFullName(): string {

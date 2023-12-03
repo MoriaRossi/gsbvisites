@@ -1,5 +1,6 @@
 import { User } from "../model/User";
 
+
 export class Medecin {
   user: User;
   id: number;
