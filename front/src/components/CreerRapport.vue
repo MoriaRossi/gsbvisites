@@ -73,6 +73,7 @@ export default defineComponent({
                 <label for="bilanDeLaVisite" class="form__label">Bilan de la visite :</label>
             </div>
 
-        <button type="submit">Enregistrer</button>
-    </form>
-</div></template>
+            <button type="submit">Enregistrer</button>
+        </form>
+    </div>
+</template>

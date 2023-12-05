@@ -52,7 +52,7 @@ CREATE TABLE famille (
 CREATE TABLE appartenir (
     id_medicament INT,
     id_famille INT,
-    SERIAL PRIMARY KEY (id_medicament, id_famille),
+    PRIMARY KEY (id_medicament, id_famille),
     FOREIGN KEY (id_medicament) REFERENCES medicament(id),
     FOREIGN KEY (id_famille) REFERENCES famille(id)
 );
@@ -74,7 +74,7 @@ CREATE TABLE offrir (
     quantite INT NOT NULL,
     rapport_id INT,
     medicament_id INT,
-    SERIAL UNIQUE (rapport_id, medicament_id),
+    UNIQUE (rapport_id, medicament_id),
     FOREIGN KEY (rapport_id) REFERENCES rapport(id),
     FOREIGN KEY (medicament_id) REFERENCES medicament(id)
 );

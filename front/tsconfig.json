@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost", "es2015.promise", "es2015.symbol"],
     "target": "es6",
     "module": "commonjs",
     "outDir": "./dist",
