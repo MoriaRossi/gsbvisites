@@ -6,11 +6,13 @@ import App from './App.vue';
 import HomePage from '@/components/HomePage.vue';
 import GererRapports from '@/components/GererRapports.vue';
 import CreerRapport from '@/components/CreerRapport.vue';
+import page_test from '@/components/page_test.vue';
 
 const routes = [
     { path: '/', component: HomePage },
     { path: '/GererRapports', component: GererRapports },
-    { path: '/CreerRapport', component: CreerRapport }
+    { path: '/CreerRapport', component: CreerRapport },
+    { path: '/page_test', component: page_test }
 ];
 
 const router = createRouter({
