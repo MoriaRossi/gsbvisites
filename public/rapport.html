@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="stylePage.css">
+
+    <title>Formulaire de Rapport d'Activité</title>
+    <!-- <link rel="stylesheet" href="./Styles/styles.css"> -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+
+    <h1>Rapport d'Activité</h1>
+
+    <form action="/submit_report" method="post">
+        <label for="medecin-select">Choisissez un médecin :</label>
+        <select id="medecin-select">
+            <option value="">--Veuillez choisir un médecin--</option>
+            <!-- Les options seront ajoutées ici par JavaScript -->
+        </select><br>
+
+        <label for="date">Date de la visite :</label>
+        <input type="date" id="date" name="date" required><br>
+
+        <label for="motif">Motif de la visite :</label>
+        <select id="motif" name="motif" required>
+            <option value="">--Veuillez choisir un motif--</option>
+            <option value="motif1">Contrôle Annuel</option>
+            <option value="motif2">Symptômes de Maladie Aiguë</option>
+            <option value="motif3">Gestion des Maladies Chroniques</option>
+            <option value="motif4">Consultations Spécialisées</option>
+            <option value="motif5">Suivi Après une Intervention ou Hospitalisation</option>
+            <option value="motif6">Bilan de Santé</option>
+        </select><br>
+
+        <label for="medicament-select">Choisissez un medicament :</label>
+        <select id="medicament-select">
+            <option value="">--Veuillez choisir un medicament--</option>
+            <!-- Les options seront ajoutées ici par JavaScript -->
+        </select><br>
+
+        <label for="echantillons">Nombre d'échantillons offerts :</label>
+        <input type="number" id="echantillons" name="echantillons" min="0" required><br>
+
+        <input type="submit" value="Soumettre">
+    </form>
+
+
+</body>
+
+</html>
+
+<script>
+
+    axios.get('http://localhost:3000/medecin')
+        .then(function (response) {
+            const select = document.getElementById('medecin-select');
+
+            response.data.forEach(medecin => {
+                const option = document.createElement('option');
+                option.value = medecin.nom + " " + medecin.prenom;
+                option.textContent = medecin.nom + " " + medecin.prenom;
+                select.appendChild(option);
+            });
+        })
+        .catch(function (error) {
+            console.error("Erreur lors de la récupération des médecins:", error);
+        });
+
+    axios.get('http://localhost:3000/medicament')
+        .then(function (response) {
+            const select = document.getElementById('medicament-select');
+
+            response.data.forEach(medicament => {
+                const option = document.createElement('option');
+                option.value = medicament.nomCommercial;
+                option.textContent = medicament.nomCommercial;
+                select.appendChild(option);
+            });
+        })
+        .catch(function (error) {
+            console.error("Erreur lors de la récupération des médecins:", error);
+        });
+
+</script>

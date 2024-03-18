@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="stylePage.css">
+
+    <title>Formulaire de Rapport d'Activité</title>
+    <!-- <link rel="stylesheet" href="./Styles/styles.css"> -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+
+    <h1>Tous les médecins</h1>
+    <ul id="medecin-list">
+    </ul>
+
+
+</body>
+
+</html>
+<script>    
+    axios.get('http://localhost:3000/medecin')
+        .then(function (response) {
+            const select = document.getElementById('medecin-list');
+
+            response.data.forEach(medecin => {
+                const option = document.createElement('li');
+                option.value = medecin.nom + " " + medecin.prenom;
+                option.textContent = medecin.nom + " " + medecin.prenom;
+                select.appendChild(option);
+            });
+        })
+        .catch(function (error) {
+            console.error("Erreur lors de la récupération des médecins:", error);
+        });
+</script>

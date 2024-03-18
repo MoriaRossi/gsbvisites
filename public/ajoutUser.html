@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="stylePage.css">
+
+    <title>Formulaire d'un nouvel utilisateur</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+
+    <h1>Nouvel Utilisateur</h1>
+
+    <form id="ajoutUserForm"> <!-- Retirer l'attribut action pour intercepter la soumission -->
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" name="nom" required><br>
+
+        <label for="prenom">Prénom:</label>
+        <input type="text" id="prenom" name="prenom" required><br>
+
+        <label for="user_type">Type d'utilisateur:</label>
+        <select id="user_type" name="user_type" required>
+            <option value="">--Sélectionnez le type--</option>
+            <option value="visiteur">Visiteur</option>
+            <option value="medecin">Médecin</option>
+        </select><br>
+
+        <label for="username">Nom d'utilisateur:</label>
+        <input type="text" id="username" name="username" required><br>
+
+        <label for="mdp">Mot de passe:</label>
+        <input type="password" id="mdp" name="mdp" required><br>
+
+        <label for="adresse">Adresse:</label>
+        <input type="text" id="adresse" name="adresse" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+
+        <input type="submit" value="Ajouter">
+    </form>
+
+    <script>
+        document.getElementById('ajoutUserForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const userData = {
+                nom: document.getElementById('nom').value,
+                prenom: document.getElementById('prenom').value,
+                user_type: document.getElementById('user_type').value,
+                username: document.getElementById('username').value,
+                mdp: document.getElementById('mdp').value,
+                adresse: document.getElementById('adresse').value,
+                email: document.getElementById('email').value
+            };
+
+            axios.post('/ajoutUser', userData)
+                .then(function (response) {
+                    if (response.status === 201) {
+                        console.log(userData.user_type);
+                        if (userData.user_type === 'medecin') {
+                            console.log("add medecin");
+                            window.location.href = '/ajoutTypeMedecin.html';
+                        } else {
+                            console.log("add visiteur");
+                            window.location.href = '/ajoutTypeVisiteur.html';
+                        }
+                    }
+                })
+                .catch(function (error) {
+                    console.error('Erreur lors de la soumission:', error);
+                });
+        });
+    </script>
+
+</body>
+
+</html>

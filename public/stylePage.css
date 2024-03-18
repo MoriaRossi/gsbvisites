@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+h1 {
+    color: #444;
+    text-align: center;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type=text],
+input[type=number],
+input[type=date],
+input[type=password],
+input[type=email],
+select {
+    width: 100%;
+    /* Pleine largeur */
+    padding: 12px 20px;
+    /* Plus de padding pour une meilleure lisibilité */
+    margin: 8px 0;
+    /* Ajoute une marge en dessous de chaque champ */
+    display: inline-block;
+    /* S'assure que les éléments sont alignés correctement */
+    border: 1px solid #ccc;
+    /* Couleur de bordure plus douce */
+    border-radius: 4px;
+    /* Bordures arrondies */
+    box-sizing: border-box;
+    /* S'assure que padding et border ne dépassent pas la largeur définie */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    /* Ombre intérieure légère */
+    font-size: 16px;
+    /* Taille de la police plus grande pour une meilleure lisibilité */
+}
+
+
+ul {
+    width: 15%;
+    padding: 8px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+input[type=submit] {
+    width: 100%;
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+input[type=submit]:hover {
+    background-color: #0056b3;
+}
+
+
+
+@media (max-width: 600px) {
+    form {
+        width: 100%;
+    }
+}
